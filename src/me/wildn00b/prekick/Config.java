@@ -21,7 +21,7 @@ public class Config {
 		Reload();
 	}
 
-	private void CreateStandardConfig() {
+	private void CreateDefaultConfig() {
 		config.set("PreKick.Enabled", true);
 		config.set("PreKick.Easter-egg", true); // Broadcast when I (WildN00b) join the server
 		config.set("PreKick.ReloadWhenRead", false);
@@ -63,12 +63,12 @@ public class Config {
 			try {
 				config.load(file);
 			} catch (Exception e) {
-				e.printStackTrace();
-				PreKick.log.log(Level.SEVERE, "[PreKick] Couldn't load config, reseting to standard config");
-				CreateStandardConfig();
+				file.renameTo(new File(file.getPath()+ ".bak"));
+				PreKick.log.log(Level.SEVERE, "[PreKick] Couldn't load config, moving broken config to '" + file.getAbsoluteFile() + ".bak' and making a new default config file.");
+				CreateDefaultConfig();
 			}
 		} else {
-			CreateStandardConfig();
+			CreateDefaultConfig();
 		}
 		reloadWhenRead = config.getBoolean("PreKick.ReloadWhenRead");
 	}
