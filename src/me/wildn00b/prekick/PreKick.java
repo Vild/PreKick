@@ -15,12 +15,7 @@ public class PreKick extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		config = new Config(new File(getDataFolder().getAbsolutePath() + File.separator + "config.yml"));
-		
-		if (getServer().getPluginManager().getPlugin("Vault") == null) {
-			log.log(Level.INFO, "[PreKick] Vault not found, fall back on Bukkit Permissions.");
-			permissions = new Permissions(this, true);
-		} else
-			permissions = new Permissions(this, false);
+		permissions = new Permissions(this);
 		
 		log.log(Level.INFO, "[PreKick] Initialize successfully.");
 	}
