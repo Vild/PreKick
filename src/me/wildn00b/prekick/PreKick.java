@@ -18,7 +18,9 @@ public class PreKick extends JavaPlugin {
 		permissions = new Permissions(this);
 		config = new Config(new File(getDataFolder().getAbsolutePath() + File.separator + "config.yml"));
 		whitelist = new Whitelist(this);
-		
+
+		getServer().getPluginManager().registerEvents(new Listener(this), this);
+
 		log.log(Level.INFO, "[PreKick] Initialize successfully.");
 	}
 

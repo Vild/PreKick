@@ -2,11 +2,10 @@ package me.wildn00b.prekick;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
+import java.util.Set;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -26,7 +25,6 @@ public class Config {
 		config.set("PreKick.Enabled", true);
 		config.set("PreKick.Easter-egg", true); // Broadcast when I (WildN00b) join the server
 		config.set("PreKick.ReloadWhenRead", false);
-//		config.set("PreKick.WhitelistInConfig", true);
 
 		config.set("Whitelist.Enabled", true);
 		config.set("Whitelist.KickMessage", "Connection refuse: connect");
@@ -42,7 +40,7 @@ public class Config {
 		config.set("Blacklist.group1.KickMessage", "You are banned for being in the group!");
 		config.set("Blacklist.group1.Players", Arrays.asList(new String[] { "ImAGroup" }));
 		config.set("Blacklist.Hax.KickMessage", "You are banned for hacking!");
-		config.set("Blacklist.Hax.Players", Arrays.asList(new String[] { "Hacker1337", "Haxz" }));
+		config.set("Blacklist.Hax.Players", Arrays.asList(new String[] { "Hacker1337", "Hax" }));
 
 		Save();
 	}
@@ -89,19 +87,9 @@ public class Config {
 	}
 
 	public List<String> GetStringList(String path) {
-		return GetStringList(path, false);
-	}
-	
-	public List<String> GetStringList(String path, boolean toLower) {
 		if (reloadWhenRead)
 			Reload();
-		if (toLower) {
-			ArrayList<String> tmp = new ArrayList<String>();
-			for (String s : config.getStringList(path))
-				tmp.add(s.toLowerCase());
-			return tmp;
-		} else
-			return config.getStringList(path);
+		return config.getStringList(path);
 	}
 
 	public Set<String> GetKeys(String path) {
@@ -114,5 +102,5 @@ public class Config {
 		config.set(path, value);
 		Save();
 	}
-	
+
 }
