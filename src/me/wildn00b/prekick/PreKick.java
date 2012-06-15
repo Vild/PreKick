@@ -11,20 +11,24 @@ public class PreKick extends JavaPlugin {
 	public static final Logger log = Logger.getLogger("Minecraft");
 	public Permissions permissions;
 	public Config config;
+	public Whitelist whitelist;
 
 	@Override
 	public void onEnable() {
-		config = new Config(new File(getDataFolder().getAbsolutePath() + File.separator + "config.yml"));
 		permissions = new Permissions(this);
+		config = new Config(new File(getDataFolder().getAbsolutePath() + File.separator + "config.yml"));
+		whitelist = new Whitelist(this);
 		
 		log.log(Level.INFO, "[PreKick] Initialize successfully.");
 	}
 
 	@Override
 	public void onDisable() {
+		whitelist = null;
 		config.Close();
 		config = null;
 		permissions = null;
+		log.log(Level.INFO, "[PreKick] Disabling successfully.");
 	}
 
 }

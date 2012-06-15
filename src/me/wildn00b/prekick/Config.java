@@ -2,6 +2,7 @@ package me.wildn00b.prekick;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +14,7 @@ public class Config {
 
 	private YamlConfiguration config;
 	private File file;
-	private boolean reloadWhenRead; 
+	public boolean reloadWhenRead;
 
 	public Config(File file) {
 		this.file = file;
@@ -25,6 +26,7 @@ public class Config {
 		config.set("PreKick.Enabled", true);
 		config.set("PreKick.Easter-egg", true); // Broadcast when I (WildN00b) join the server
 		config.set("PreKick.ReloadWhenRead", false);
+		config.set("PreKick.WhitelistInConfig", true);
 
 		config.set("Whitelist.Enabled", true);
 		config.set("Whitelist.KickMessage", "Connection refuse: connect");
@@ -63,8 +65,9 @@ public class Config {
 			try {
 				config.load(file);
 			} catch (Exception e) {
-				file.renameTo(new File(file.getPath()+ ".bak"));
-				PreKick.log.log(Level.SEVERE, "[PreKick] Couldn't load config, moving broken config to '" + file.getAbsoluteFile() + ".bak' and making a new default config file.");
+				file.renameTo(new File(file.getPath() + ".bak"));
+				PreKick.log.log(Level.SEVERE, "[PreKick] Couldn't load config, moving broken config to '" + file.getAbsoluteFile()
+						+ ".bak' and making a new default config file.");
 				CreateDefaultConfig();
 			}
 		} else {
@@ -72,31 +75,41 @@ public class Config {
 		}
 		reloadWhenRead = config.getBoolean("PreKick.ReloadWhenRead");
 	}
-	
+
 	public boolean GetBoolean(String path) {
 		if (reloadWhenRead)
 			Reload();
 		return config.getBoolean(path);
 	}
-	
+
 	public String GetString(String path) {
 		if (reloadWhenRead)
 			Reload();
 		return config.getString(path);
 	}
-	
+
 	public List<String> GetStringList(String path) {
-		if (reloadWhenRead)
-			Reload();
-		return config.getStringList(path);
+		return GetStringList(path, false);
 	}
 	
+	public List<String> GetStringList(String path, boolean toLower) {
+		if (reloadWhenRead)
+			Reload();
+		if (toLower) {
+			ArrayList<String> tmp = new ArrayList<String>();
+			for (String s : config.getStringList(path))
+				tmp.add(s.toLowerCase());
+			return tmp;
+		} else
+			return config.getStringList(path);
+	}
+
 	public Set<String> GetKeys(String path) {
 		if (reloadWhenRead)
 			Reload();
 		return config.getConfigurationSection(path).getKeys(false);
 	}
-	
+
 	public void Set(String path, Object value) {
 		config.set(path, value);
 		Save();
