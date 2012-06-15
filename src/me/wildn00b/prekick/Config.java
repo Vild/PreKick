@@ -26,7 +26,7 @@ public class Config {
 		config.set("PreKick.Enabled", true);
 		config.set("PreKick.Easter-egg", true); // Broadcast when I (WildN00b) join the server
 		config.set("PreKick.ReloadWhenRead", false);
-		config.set("PreKick.WhitelistInConfig", true);
+//		config.set("PreKick.WhitelistInConfig", true);
 
 		config.set("Whitelist.Enabled", true);
 		config.set("Whitelist.KickMessage", "Connection refuse: connect");
