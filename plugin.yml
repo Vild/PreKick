@@ -3,7 +3,7 @@ version: 2.0
 description: A whitelist plugin for bukkit with custom kick messages.
 author: WildN00b
 authors: [WildN00b] 
-website: http://forums.bukkit.org/threads/admin-prekick-v0-7-1-whitelist-with-custom-messages-953.15507/
+website: http://dev.bukkit.org/server-mods/prekick/
 main: me.wildn00b.prekick.PreKick
 softdepend: [Vault]
 

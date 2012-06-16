@@ -46,7 +46,7 @@ public class Config {
 	}
 
 	public void Close() {
-		Save();
+		//Save();
 		config = null;
 	}
 
@@ -59,7 +59,7 @@ public class Config {
 	}
 
 	public void Reload() {
-		if (!file.exists()) {
+		if (file.exists()) {
 			try {
 				config.load(file);
 			} catch (Exception e) {
