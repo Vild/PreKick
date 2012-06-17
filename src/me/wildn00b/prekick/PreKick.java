@@ -20,7 +20,7 @@ public class PreKick extends JavaPlugin {
 		whitelist = new Whitelist(this);
 
 		getServer().getPluginManager().registerEvents(new Listener(this), this);
-
+		getCommand("prekick").setExecutor(new PreKickCommand(this));
 		log.log(Level.INFO, "[PreKick] Initialize successfully.");
 	}
 

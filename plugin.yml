@@ -20,15 +20,22 @@ permissions:
     default: op
     children:
       prekick.show: true
+      prekick.status: true
       prekick.seekick: true
       prekick.switch: true
-      prekick.whitelistswitch: true
-      prekick.ipswitch: true
-      prekick.add: true
-      prekick.remove: true
-      prekick.addip: true
-      prekick.removeip: true
+      prekick.whitelist.switch: true
+      prekick.ip.switch: true
+      prekick.blacklist.switch: true
+      prekick.whitelist.add: true
+      prekick.whitelist.remove: true
+      prekick.ip.add: true
+      prekick.ip.remove: true
+      prekick.blacklist.add: true
+      prekick.blacklist.remove: true
   prekick.show:
+    description: Allows to show the status
+    default: false
+  prekick.status:
     description: Allows to show the menu
     default: false
   prekick.seekick:
@@ -37,21 +44,30 @@ permissions:
   prekick.switch:
     description: Allows you to turn on and off prekick
     default: false
-  prekick.whitelistswitch:
+  prekick.whitelist.switch:
     description: Allows you to turn on and off the whitelist
     default: false
-  prekick.ipswitch:
-    description: Allows you to turn on and off the iplist
+  prekick.ip.switch:
+    description: Allows you to turn on and off the ip whitelist
     default: false
-  prekick.add:
+  prekick.blacklist.switch:
+    description: Allows you to turn on and off the blacklist
+    default: false
+  prekick.whitelist.add:
     description: Allows you to add users to the whitelist
     default: false
-  prekick.remove:
+  prekick.whitelist.remove:
     description: Allows you to remove users from the whitelist
     default: false
-  prekick.addip:
-    description: Allows you to add users to the iplist
+  prekick.ip.add:
+    description: Allows you to add users to the IP whitelist
     default: false
-  prekick.removeip:
-    description: Allows you to remove users for the iplist
+  prekick.ip.remove:
+    description: Allows you to remove users from the IP whitelist
+    default: false
+  prekick.blacklist.add:
+    description: Allows you to add users to the blacklist
+    default: false
+  prekick.blacklist.remove:
+    description: Allows you to remove users from the blacklist
     default: false

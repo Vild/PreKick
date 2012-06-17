@@ -12,6 +12,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class Config {
 
 	private YamlConfiguration config;
+	public YamlConfiguration getConfig() {
+		return config;
+	}
+
 	private File file;
 	public boolean reloadWhenRead;
 
@@ -30,23 +34,21 @@ public class Config {
 		config.set("Whitelist.KickMessage", "Connection refuse: connect");
 		config.set("Whitelist.Players", Arrays.asList(new String[] { "WildN00b", "ThePf" }));
 
-		config.set("Whitelist.IP.Enabled", false);
-		config.set("Whitelist.IP.AutoAddIP", false);
-		config.set("Whitelist.IP.KickMessage", "IP doesn't match");
-		config.set("Whitelist.IP.Players.WildN00b", Arrays.asList(new String[] { "127.0.0.1", "10.10.10.10" }));
-		config.set("Whitelist.IP.Players.ThePf", Arrays.asList(new String[] { "1.1.1.1" }));
+		config.set("IP.Enabled", false);
+		config.set("IP.KickMessage", "IP doesn't match");
+		config.set("IP.Players.WildN00b", Arrays.asList(new String[] { "127.0.0.1", "10.10.10.10" }));
+		config.set("IP.Players.ThePf", Arrays.asList(new String[] { "1.1.1.1" }));
 
 		config.set("Blacklist.Enabled", true);
 		config.set("Blacklist.group1.KickMessage", "You are banned for being in the group!");
 		config.set("Blacklist.group1.Players", Arrays.asList(new String[] { "ImAGroup" }));
 		config.set("Blacklist.Hax.KickMessage", "You are banned for hacking!");
 		config.set("Blacklist.Hax.Players", Arrays.asList(new String[] { "Hacker1337", "Hax" }));
-
 		Save();
 	}
 
 	public void Close() {
-		//Save();
+		// Save();
 		config = null;
 	}
 
@@ -64,8 +66,7 @@ public class Config {
 				config.load(file);
 			} catch (Exception e) {
 				file.renameTo(new File(file.getPath() + ".bak"));
-				PreKick.log.log(Level.SEVERE, "[PreKick] Couldn't load config, moving broken config to '" + file.getAbsoluteFile()
-						+ ".bak' and making a new default config file.");
+				PreKick.log.log(Level.SEVERE, "[PreKick] Couldn't load config, moving broken config to '" + file.getAbsoluteFile() + ".bak' and making a new default config file.");
 				CreateDefaultConfig();
 			}
 		} else {
