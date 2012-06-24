@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PreKick extends JavaPlugin {
@@ -21,7 +22,7 @@ public class PreKick extends JavaPlugin {
 
 		getServer().getPluginManager().registerEvents(new Listener(this), this);
 		getCommand("prekick").setExecutor(new PreKickCommand(this));
-		log.log(Level.INFO, "[PreKick] Initialize successfully.");
+		log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Initialize successfully.");
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class PreKick extends JavaPlugin {
 		config.Close();
 		config = null;
 		permissions = null;
-		log.log(Level.INFO, "[PreKick] Disabling successfully.");
+		log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Disabling successfully.");
 	}
 
 }

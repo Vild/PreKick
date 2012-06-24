@@ -33,10 +33,10 @@ permissions:
       prekick.blacklist.add: true
       prekick.blacklist.remove: true
   prekick.show:
-    description: Allows to show the status
+    description: Allows to show the menu
     default: false
   prekick.status:
-    description: Allows to show the menu
+    description: Allows to show the status page
     default: false
   prekick.seekick:
     description: Allows to see when someone was kicked

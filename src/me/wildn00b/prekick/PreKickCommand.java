@@ -2,6 +2,7 @@ package me.wildn00b.prekick;
 
 import java.util.ArrayList;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -109,15 +110,15 @@ public class PreKickCommand implements CommandExecutor {
 		if (enabling) {
 			if (!prekick.config.GetBoolean(path)) {
 				prekick.config.Set(path, true);
-				sender.sendMessage("[PreKick] " + name + " is now enabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is now enabled.");
 			} else
-				sender.sendMessage("[PreKick] " + name + " is already enabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is already enabled.");
 		} else {
 			if (prekick.config.GetBoolean(path)) {
 				prekick.config.Set(name, false);
-				sender.sendMessage("[PreKick] " + name + " is now disabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is now disabled.");
 			} else
-				sender.sendMessage("[PreKick] " + name + " is already disabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is already disabled.");
 		}
 	}
 
@@ -138,7 +139,7 @@ public class PreKickCommand implements CommandExecutor {
 		cmds.add("/" + cmdLabel + " help <Number> - Shows <Number> page of help.");
 
 		if (p(sender, "prekick.status"))
-			cmds.add("/" + cmdLabel + " on - Show some status about PreKick.");
+			cmds.add("/" + cmdLabel + " status - Show some status about PreKick.");
 
 		if (p(sender, "prekick.switch"))
 			cmds.add("/" + cmdLabel + " on - Turns PreKick on.");

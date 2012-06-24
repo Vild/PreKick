@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.Set;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Config {
@@ -35,14 +36,14 @@ public class Config {
 		config.set("Whitelist.Players", Arrays.asList(new String[] { "WildN00b", "ThePf" }));
 
 		config.set("IP.Enabled", false);
-		config.set("IP.KickMessage", "IP doesn't match");
+		config.set("IP.KickMessage", "&eIP doesn't match");
 		config.set("IP.Players.WildN00b", Arrays.asList(new String[] { "127.0.0.1", "10.10.10.10" }));
 		config.set("IP.Players.ThePf", Arrays.asList(new String[] { "1.1.1.1" }));
 
 		config.set("Blacklist.Enabled", true);
-		config.set("Blacklist.group1.KickMessage", "You are banned for being in the group!");
+		config.set("Blacklist.group1.KickMessage", "&2&lYou are banned for being in the group!");
 		config.set("Blacklist.group1.Players", Arrays.asList(new String[] { "ImAGroup" }));
-		config.set("Blacklist.Hax.KickMessage", "You are banned for hacking!");
+		config.set("Blacklist.Hax.KickMessage", "&c&nYou are banned for hacking!");
 		config.set("Blacklist.Hax.Players", Arrays.asList(new String[] { "Hacker1337", "Hax" }));
 		Save();
 	}
@@ -66,7 +67,7 @@ public class Config {
 				config.load(file);
 			} catch (Exception e) {
 				file.renameTo(new File(file.getPath() + ".bak"));
-				PreKick.log.log(Level.SEVERE, "[PreKick] Couldn't load config, moving broken config to '" + file.getAbsoluteFile() + ".bak' and making a new default config file.");
+				PreKick.log.log(Level.SEVERE, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Couldn't load config, moving broken config to '" + file.getAbsoluteFile() + ".bak' and making a new default config file.");
 				CreateDefaultConfig();
 			}
 		} else {

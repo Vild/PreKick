@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 
+import org.bukkit.ChatColor;
+
 public class Whitelist {
 
 	private PreKick prekick;
@@ -12,6 +14,10 @@ public class Whitelist {
 		this.prekick = prekick;
 	}
 
+	public String processColors(String text) {
+		return text.replaceAll("&", "\u00A7");
+	}
+	
 	public int IsPlayerOnWhitelist(String player, String IP) { // Returns 0 = not on the whitelist, 1 = on the
 																// whitelist, 2 = wrong ip, 3 = on the blacklist
 		// Blacklist start
@@ -43,44 +49,44 @@ public class Whitelist {
 
 	public String AddPlayerToWhitelist(String player) {
 		if (prekick.config.GetStringList("Whitelist.Players").contains(player))
-			return "[PreKick] Player already on the whitelist";
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Player already on the whitelist";
 
 		List<String> list = prekick.config.GetStringList("Whitelist.Players");
 		list.add(player);
 		prekick.config.Set("Whitelist.Players", list);
 		prekick.config.Save();
 
-		return "[PreKick] Added player from the whitelist successfully";
+		return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Added player from the whitelist successfully";
 	}
 
 	public String RemovePlayerFromWhitelist(String player) {
 		if (!prekick.config.GetStringList("Whitelist.Players").contains(player))
-			return "[PreKick] Player are not on the whitelist";
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Player are not on the whitelist";
 
 		List<String> list = prekick.config.GetStringList("Whitelist.Players");
 		list.remove(player);
 		prekick.config.Set("Whitelist.Players", list);
 		prekick.config.Save();
 
-		return "[PreKick] Removed player from the whitelist successfully";
+		return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Removed player from the whitelist successfully";
 	}
 
 	public String GetKickMessage(String player, int reason) {
 		if (reason == 0)
-			return prekick.config.GetString("Whitelist.KickMessage");
+			return processColors(prekick.config.GetString("Whitelist.KickMessage"));
 		else if (reason == 2)
-			return prekick.config.GetString("IP.KickMessage");
+			return processColors(prekick.config.GetString("IP.KickMessage"));
 		else if (reason == 3) {
 			for (String group : prekick.config.GetKeys("Blacklist")) {
 				if (group != "Enabled") {
 					if (prekick.config.GetStringList("Blacklist." + group + ".Players").contains(player))
-						return prekick.config.GetString("Blacklist." + group + ".KickMessage");
+						return processColors(prekick.config.GetString("Blacklist." + group + ".KickMessage"));
 				}
 			}
-			PreKick.log.log(Level.WARNING, "[PreKick] Can't find blacklist group for " + player);
+			PreKick.log.log(Level.WARNING, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Can't find blacklist group for " + player);
 			return "PreKick missbehaving.";
 		} else {
-			PreKick.log.log(Level.WARNING, "[PreKick] Unknown kick reason. reason: " + reason);
+			PreKick.log.log(Level.WARNING, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Unknown kick reason. reason: " + reason);
 			return "PreKick missbehaving.";
 		}
 	}
@@ -91,11 +97,11 @@ public class Whitelist {
 			list.add(IP);
 			prekick.config.Set("IP.Players." + player, list);
 			prekick.config.Save();
-			return "[PreKick] Added IP to player in the IP whitelist successfully";
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Added IP to player in the IP whitelist successfully";
 		} else {
 			prekick.config.Set("IP.Players." + player, Arrays.asList(new String[] { IP }));
 			prekick.config.Save();
-			return "[PreKick] Added player to the IP whitelist successfully";
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Added player to the IP whitelist successfully";
 		}
 
 	}
@@ -108,7 +114,7 @@ public class Whitelist {
 				prekick.config.Set("IP.Players." + player, list);
 				prekick.config.getConfig().getConfigurationSection("IP.Players").set(player, null);
 				prekick.config.Save();
-				return "[PreKick] Removed IP from the player in the IP whitelist successfully";
+				return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Removed IP from the player in the IP whitelist successfully";
 			} else {
 				List<String> list = prekick.config.GetStringList("IP.Players." + player);
 				list.remove(IP);
@@ -117,35 +123,35 @@ public class Whitelist {
 				else
 					prekick.config.Set("IP.Players." + player, list);
 				prekick.config.Save();
-				return "[PreKick] Removed player successfully";
+				return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Removed player successfully";
 			}
 		} else
-			return "[PreKick] Can't find player";
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Can't find player";
 
 	}
 
 	public String AddPlayerToBlacklist(String player, String group) {
 		if (prekick.config.GetStringList("Blacklist." + group + ".Players").contains(player))
-			return "[PreKick] Player already on the blacklist";
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Player already on the blacklist";
 
 		List<String> list = prekick.config.GetStringList("Whitelist." + group + ".Players");
 		list.add(player);
 		prekick.config.Set("Whitelist." + group + ".Players", list);
 		prekick.config.Save();
 
-		return "[PreKick] Added player to the blacklist successfully";
+		return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Added player to the blacklist successfully";
 	}
 
 	public String RemovePlayerFromBlacklist(String player, String group) {
 		if (!prekick.config.GetStringList("Whitelist.Players").contains(player))
-			return "[PreKick] Player are not on the blacklist";
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Player are not on the blacklist";
 
 		List<String> list = prekick.config.GetStringList("Blacklist." + group + ".Players");
 		list.remove(player);
 		prekick.config.Set("Blacklist." + group + ".Players", list);
 		prekick.config.Save();
 
-		return "[PreKick] Removed player from the blacklist successfully";
+		return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Removed player from the blacklist successfully";
 	}
 
 }

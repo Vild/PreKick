@@ -2,6 +2,7 @@ package me.wildn00b.prekick;
 
 import java.util.logging.Level;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
@@ -14,7 +15,7 @@ public class Permissions {
 
 	public Permissions(PreKick prekick) {
 		if (prekick.getServer().getPluginManager().getPlugin("Vault") == null) {
-			PreKick.log.log(Level.INFO, "[PreKick] Vault not found, fall back on Bukkit Permissions.");
+			PreKick.log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Vault not found, fall back on Bukkit Permissions.");
 			isVaultEnabled = false;
 		} else {
 			RegisteredServiceProvider<Permission> rsp = prekick.getServer().getServicesManager().getRegistration(Permission.class);
