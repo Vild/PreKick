@@ -100,23 +100,23 @@ public class PreKickCommand implements CommandExecutor {
 
 	private void ShowStatus(CommandSender sender) {
 		sender.sendMessage("PreKick V2.0 status page");
-		sender.sendMessage("PreKick status: " + (prekick.config.GetBoolean("PreKick.Enabled") ? "true" : "false"));
-		sender.sendMessage("Whitelist status: " + (prekick.config.GetBoolean("Whitelist.Enabled") ? "true" : "false"));
-		sender.sendMessage("IP status: " + (prekick.config.GetBoolean("IP.Enabled") ? "true" : "false"));
-		sender.sendMessage("Blacklist status: " + (prekick.config.GetBoolean("Blacklist.Enabled") ? "true" : "false"));
+		sender.sendMessage("PreKick status: " + (prekick.config.GetBoolean("PreKick.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
+		sender.sendMessage("Whitelist status: " + (prekick.config.GetBoolean("Whitelist.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
+		sender.sendMessage("IP status: " + (prekick.config.GetBoolean("IP.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
+		sender.sendMessage("Blacklist status: " + (prekick.config.GetBoolean("Blacklist.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
 	}
 
 	private void ToggleConfig(CommandSender sender, String path, boolean enabling, String name) {
 		if (enabling) {
 			if (!prekick.config.GetBoolean(path)) {
 				prekick.config.Set(path, true);
-				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is now enabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is now " + ChatColor.GREEN + "enabled.");
 			} else
 				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is already enabled.");
 		} else {
 			if (prekick.config.GetBoolean(path)) {
 				prekick.config.Set(name, false);
-				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is now disabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is now " + ChatColor.RED + "disabled.");
 			} else
 				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is already disabled.");
 		}
