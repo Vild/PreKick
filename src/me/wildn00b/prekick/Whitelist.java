@@ -73,14 +73,14 @@ public class Whitelist {
 
 	public String GetKickMessage(String player, int reason) {
 		if (reason == 0)
-			return processColors(prekick.config.GetString("Whitelist.KickMessage"));
+			return prekick.config.GetString("Whitelist.KickMessage");
 		else if (reason == 2)
-			return processColors(prekick.config.GetString("IP.KickMessage"));
+			return prekick.config.GetString("IP.KickMessage");
 		else if (reason == 3) {
 			for (String group : prekick.config.GetKeys("Blacklist")) {
 				if (group != "Enabled") {
 					if (prekick.config.GetStringList("Blacklist." + group + ".Players").contains(player))
-						return processColors(prekick.config.GetString("Blacklist." + group + ".KickMessage"));
+						return prekick.config.GetString("Blacklist." + group + ".KickMessage");
 				}
 			}
 			PreKick.log.log(Level.WARNING, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Can't find blacklist group for " + player);

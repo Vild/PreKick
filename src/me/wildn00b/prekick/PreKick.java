@@ -13,9 +13,11 @@ public class PreKick extends JavaPlugin {
 	public Permissions permissions;
 	public Config config;
 	public Whitelist whitelist;
+	public String version;
 
 	@Override
 	public void onEnable() {
+		version = getDescription().getVersion();
 		permissions = new Permissions(this);
 		config = new Config(new File(getDataFolder().getAbsolutePath() + File.separator + "config.yml"));
 		whitelist = new Whitelist(this);

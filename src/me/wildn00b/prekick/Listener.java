@@ -25,7 +25,7 @@ public class Listener implements org.bukkit.event.Listener {
 		int reason = prekick.whitelist.IsPlayerOnWhitelist(event.getPlayer().getName(), event.getAddress().getHostAddress());
 
 		if (reason != 1) {
-			event.disallow(Result.KICK_WHITELIST, prekick.whitelist.GetKickMessage(event.getPlayer().getName(), reason));
+			event.disallow(Result.KICK_WHITELIST, prekick.whitelist.processColors(prekick.whitelist.GetKickMessage(event.getPlayer().getName(), reason)));
 
 			String message = "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] '" + event.getPlayer().getName() + "' from IP '" + event.getAddress().getHostAddress() + "' was kicked ";
 			if (reason == 0)
@@ -42,14 +42,15 @@ public class Listener implements org.bukkit.event.Listener {
 				if (prekick.permissions.HasPermissions(player, "prekick.seekick"))
 					player.sendMessage(message);
 			}
-
+			
+			
 			PreKick.log.log(Level.INFO, message);
 		}
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void EasterEgg(PlayerLoginEvent event) {
-		if (prekick.config.GetBoolean("PreKick.Easter-egg") && event.getResult() == Result.ALLOWED) {
+		if (prekick.config.GetBoolean("PreKick.Easter-egg") && event.getResult() == Result.ALLOWED && event.getPlayer().getName().equals("WildN00")) {
 			prekick.getServer().broadcastMessage(ChatColor.GOLD + "WildN00b, the developer for PreKick is connecting. Say Hi!");
 			PreKick.log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] You can disable this message, if you want ;(, just turn off 'Easter-egg' in the config");
 		}

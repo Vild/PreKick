@@ -99,7 +99,7 @@ public class PreKickCommand implements CommandExecutor {
 	}
 
 	private void ShowStatus(CommandSender sender) {
-		sender.sendMessage("PreKick V2.0 status page");
+		sender.sendMessage("PreKick V" + prekick.version + " status page");
 		sender.sendMessage("PreKick status: " + (prekick.config.GetBoolean("PreKick.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
 		sender.sendMessage("Whitelist status: " + (prekick.config.GetBoolean("Whitelist.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
 		sender.sendMessage("IP status: " + (prekick.config.GetBoolean("IP.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
@@ -180,7 +180,7 @@ public class PreKickCommand implements CommandExecutor {
 			page = 1;
 		else if (page > maxpage)
 			page = maxpage;
-		sender.sendMessage("PreKick V2.0 Page " + page + "/" + maxpage);
+		sender.sendMessage("PreKick V" + prekick.version + " Page " + page + "/" + maxpage);
 		try {
 			for (int i = (page - 1) * 6; i < ((page - 1) * 6) + 6; i++) {
 				sender.sendMessage(cmds.get(i));
