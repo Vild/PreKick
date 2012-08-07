@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.Set;
 
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Config {
@@ -79,30 +80,67 @@ public class Config {
 	public boolean GetBoolean(String path) {
 		if (reloadWhenRead)
 			Reload();
-		return config.getBoolean(path);
+		return config.getBoolean(getPath(path));
 	}
 
 	public String GetString(String path) {
 		if (reloadWhenRead)
 			Reload();
-		return config.getString(path);
+		return config.getString(getPath(path));
 	}
 
 	public List<String> GetStringList(String path) {
 		if (reloadWhenRead)
 			Reload();
-		return config.getStringList(path);
+		return config.getStringList(getPath(path));
 	}
 
 	public Set<String> GetKeys(String path) {
 		if (reloadWhenRead)
 			Reload();
-		return config.getConfigurationSection(path).getKeys(false);
+		return config.getConfigurationSection(getPath(path)).getKeys(false);
 	}
 
 	public void Set(String path, Object value) {
-		config.set(path, value);
+		config.set(getPath(path), value);
 		Save();
 	}
-
+	
+	private String getPath(String path)
+	{
+		String split[] = path.split("\\.");
+		if (split.length <= 0)
+			return path;
+		
+		String newPath = "";
+		boolean set = true;
+		
+		ConfigurationSection section = config.getRoot();
+		
+		for (int i = 0; i < split.length; i++) {
+			if (!set) {
+				newPath += "." + split[i];
+				continue;
+			}
+			
+			set = false;
+			Set<String> entries = section.getKeys(false);
+			
+			for (String x : entries) {
+				if (x.equalsIgnoreCase(split[i])) {
+					newPath += "." + x;
+					set = true;
+					section = section.getConfigurationSection(x);
+				}
+			}
+			if (!set) {
+				newPath += "." + split[i];
+			}
+		}
+		return newPath.substring(1);
+	}
+	
+	public Object Get(String path, Object def) {
+		return config.get(getPath(path));
+	}
 }
