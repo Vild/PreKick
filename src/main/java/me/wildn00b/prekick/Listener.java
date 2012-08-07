@@ -50,7 +50,7 @@ public class Listener implements org.bukkit.event.Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void EasterEgg(PlayerLoginEvent event) {
-		if (prekick.config.GetBoolean("PreKick.Easter-egg") && event.getResult() == Result.ALLOWED && event.getPlayer().getName().equals("WildN00")) {
+		if (prekick.config.GetBoolean("PreKick.Easter-egg") && event.getResult() == Result.ALLOWED && event.getPlayer().getName().equals("WildN00b")) {
 			prekick.getServer().broadcastMessage(ChatColor.GOLD + "WildN00b, the developer for PreKick is connecting. Say Hi!");
 			PreKick.log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] You can disable this message, if you want ;(, just turn off 'Easter-egg' in the config");
 		}
