@@ -25,6 +25,7 @@ public class Config {
 		this.file = file;
 		config = new YamlConfiguration();
 		Reload();
+		UpgradeConfig();
 	}
 
 	private void CreateDefaultConfig() {
@@ -42,10 +43,60 @@ public class Config {
 		config.set("IP.Players.ThePf", Arrays.asList(new String[] { "1.1.1.1" }));
 
 		config.set("Blacklist.Enabled", true);
-		config.set("Blacklist.group1.KickMessage", "&2&lYou are banned for being in the group!");
-		config.set("Blacklist.group1.Players", Arrays.asList(new String[] { "ImAGroup" }));
-		config.set("Blacklist.Hax.KickMessage", "&c&nYou are banned for hacking!");
-		config.set("Blacklist.Hax.Players", Arrays.asList(new String[] { "Hacker1337", "Hax" }));
+		config.set("Blacklist.Players.Cheater1", "&a&lYou're not allowed on this server!");
+		config.set("Blacklist.Players.Cheater2", "&a&nSorry, but you're not allowed to play on this server!");
+		config.set("Blacklist.Groups.group1.KickMessage", "&2&lYou are banned for being in the group!");
+		config.set("Blacklist.Groups.group1.Players", Arrays.asList(new String[] { "ImAGroup" }));
+		config.set("Blacklist.Groups.Hax.KickMessage", "&c&nYou are banned for hacking!");
+		config.set("Blacklist.Groups.Hax.Players", Arrays.asList(new String[] { "Hacker1337", "Hax" }));
+		Save();
+	}
+	
+	private void UpgradeConfig() {
+
+		if (!config.contains(getPath("PreKick.Enable")))
+			config.set("PreKick.Enabled", true);
+		if (!config.contains(getPath("PreKick.Easter-egg")))
+			config.set("PreKick.Easter-egg", true);
+		if (!config.contains(getPath("PreKick.ReloadWhenRead")))
+			config.set("PreKick.ReloadWhenRead", false);
+		
+		if (!config.contains(getPath("Whitelist.Enable")))
+			config.set("Whitelist.Enabled", true);
+		if (!config.contains(getPath("Whitelist.KickMessage")))
+			config.set("Whitelist.KickMessage", "Connection refuse: connect");
+		if (!config.contains(getPath("Whitelist.Players")))
+			config.set("Whitelist.Players", Arrays.asList(new String[] { "WildN00b", "ThePf" }));
+		
+		if (!config.contains(getPath("IP.Enable")))
+			config.set("IP.Enabled", false);
+		if (!config.contains(getPath("IP.KickMessage")))
+			config.set("IP.KickMessage", "&eIP doesn't match");
+		if (!config.contains(getPath("IP.Players"))) {
+			config.set("IP.Players.WildN00b", Arrays.asList(new String[] { "127.0.0.1", "10.10.10.10" }));
+			config.set("IP.Players.ThePf", Arrays.asList(new String[] { "1.1.1.1" }));
+		}
+		
+		if (!config.contains(getPath("Blacklist.Groups"))) {
+			Object blacklist = config.get(getPath("Blacklist"));
+			config.set(getPath("Blacklist"), null);
+			config.set(getPath("Blacklist.Groups"), blacklist);
+			
+			if (config.getConfigurationSection(getPath("Blacklist.Groups")).getKeys(false).size() <= 1) {
+				config.set("Blacklist.Groups.group1.KickMessage", "&2&lYou are banned for being in the group!");
+				config.set("Blacklist.Groups.group1.Players", Arrays.asList(new String[] { "ImAGroup" }));
+				config.set("Blacklist.Groups.Hax.KickMessage", "&c&nYou are banned for hacking!");
+				config.set("Blacklist.Groups.Hax.Players", Arrays.asList(new String[] { "Hacker1337", "Hax" }));
+			}
+		}
+		
+		if (!config.contains(getPath("Blacklist.Enable")))
+			config.set("Blacklist.Enabled", true);
+		if (!config.contains(getPath("Blacklist.Players"))) {
+			config.set("Blacklist.Players.Cheater1", "&a&lYou're not allowed on this server!");
+			config.set("Blacklist.Players.Cheater2", "&a&nSorry, but you're not allowed to play on this server!");
+		}
+		
 		Save();
 	}
 
@@ -106,8 +157,7 @@ public class Config {
 		Save();
 	}
 	
-	private String getPath(String path)
-	{
+	public String getPath(String path) {
 		String split[] = path.split("\\.");
 		if (split.length <= 0)
 			return path;
@@ -124,19 +174,24 @@ public class Config {
 			}
 			
 			set = false;
-			Set<String> entries = section.getKeys(false);
+			try {
+				Set<String> entries = section.getKeys(false);
 			
-			for (String x : entries) {
-				if (x.equalsIgnoreCase(split[i])) {
-					newPath += "." + x;
-					set = true;
-					section = section.getConfigurationSection(x);
+				for (String x : entries) {
+					if (x.equalsIgnoreCase(split[i])) {
+						newPath += "." + x;
+						set = true;
+						section = section.getConfigurationSection(x);
+					}
 				}
+			} catch (Exception e) {
+				set = false;
 			}
 			if (!set) {
 				newPath += "." + split[i];
 			}
 		}
+		
 		return newPath.substring(1);
 	}
 	
