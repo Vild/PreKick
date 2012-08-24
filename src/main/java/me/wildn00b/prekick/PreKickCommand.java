@@ -99,26 +99,26 @@ public class PreKickCommand implements CommandExecutor {
 	}
 
 	private void ShowStatus(CommandSender sender) {
-		sender.sendMessage("PreKick V" + prekick.version + " status page");
-		sender.sendMessage("PreKick status: " + (prekick.config.GetBoolean("PreKick.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
-		sender.sendMessage("Whitelist status: " + (prekick.config.GetBoolean("Whitelist.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
-		sender.sendMessage("IP status: " + (prekick.config.GetBoolean("IP.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
-		sender.sendMessage("Blacklist status: " + (prekick.config.GetBoolean("Blacklist.Enabled") ? ChatColor.GREEN + "on" : ChatColor.RED + "off"));
+		sender.sendMessage(prekick.language.GetText("PreKickCommand.Status.PreKick").replaceAll("%VERSION%", prekick.version));
+		sender.sendMessage(prekick.language.GetText("PreKickCommand.Status.Status.PreKick") + " " + prekick.language.GetText("PreKickCommand.Status." + (prekick.config.GetBoolean("PreKick.Enabled") ? "On" : "Off")));
+		sender.sendMessage(prekick.language.GetText("PreKickCommand.Status.Status.Whitelist") + " " + prekick.language.GetText("PreKickCommand.Status." + (prekick.config.GetBoolean("Whitelist.Enabled") ? "On" : "Off")));
+		sender.sendMessage(prekick.language.GetText("PreKickCommand.Status.Status.IP") + " " + prekick.language.GetText("PreKickCommand.Status." + (prekick.config.GetBoolean("IP.Enabled") ? "On" : "Off")));
+		sender.sendMessage(prekick.language.GetText("PreKickCommand.Status.Status.Blacklist") + " " + prekick.language.GetText("PreKickCommand.Status." + (prekick.config.GetBoolean("Blacklist.Enabled") ? "On" : "Off")));
 	}
 
 	private void ToggleConfig(CommandSender sender, String path, boolean enabling, String name) {
 		if (enabling) {
 			if (!prekick.config.GetBoolean(path)) {
 				prekick.config.Set(path, true);
-				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is now " + ChatColor.GREEN + "enabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("PreKickCommand.Toggle.Enable").replaceAll("%NAME%", name));
 			} else
-				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is already enabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("PreKickCommand.Toggle.AlreadyEnable").replaceAll("%NAME%", name));
 		} else {
 			if (prekick.config.GetBoolean(path)) {
 				prekick.config.Set(name, false);
-				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is now " + ChatColor.RED + "disabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("PreKickCommand.Toggle.Disable").replaceAll("%NAME%", name));
 			} else
-				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + name + " is already disabled.");
+				sender.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("PreKickCommand.Toggle.AlreadyDisable").replaceAll("%NAME%", name));
 		}
 	}
 
@@ -136,51 +136,51 @@ public class PreKickCommand implements CommandExecutor {
 	public void ShowHelp(CommandSender sender, String cmdLabel, int page) {
 		ArrayList<String> cmds = new ArrayList<String>();
 
-		cmds.add("/" + cmdLabel + " help <Number> - Shows <Number> page of help.");
+		cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Help").replaceAll("%CMDLABEL%", cmdLabel));
 
 		if (p(sender, "prekick.status"))
-			cmds.add("/" + cmdLabel + " status - Show some status about PreKick.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Status"));
 
 		if (p(sender, "prekick.switch"))
-			cmds.add("/" + cmdLabel + " on - Turns PreKick on.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "PreKicks"));
 		if (p(sender, "prekick.switch"))
-			cmds.add("/" + cmdLabel + " off - Turns PreKick off.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.Off").replaceAll("%CMD%", "PreKicks"));
 
 		if (p(sender, "prekick.whitelist.switch"))
-			cmds.add("/" + cmdLabel + " whitelist on - Turns whitelist on.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "whitelist"));
 		if (p(sender, "prekick.whitelist.switch"))
-			cmds.add("/" + cmdLabel + " whitelist off - Turns whitelist off.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.Off").replaceAll("%CMD%", "whitelist"));
 		if (p(sender, "prekick.whitelist.add"))
-			cmds.add("/" + cmdLabel + " whitelist add <Player> - Adds player to the whitelist.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Whitelist.Add"));
 		if (p(sender, "prekick.whitelist.remove"))
-			cmds.add("/" + cmdLabel + " whitelist remove <Player> - Removes player from the whitelist.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Whitelist.Remove"));
 
 		if (p(sender, "prekick.ip.switch"))
-			cmds.add("/" + cmdLabel + " ip on - Turns IP whitelist on.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "IP whitelist"));
 		if (p(sender, "prekick.ip.switch"))
-			cmds.add("/" + cmdLabel + " ip off - Turns IP whitelist off.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "IP whitelist"));
 		if (p(sender, "prekick.ip.add"))
-			cmds.add("/" + cmdLabel + " ip add <Player> <IP> - Adds player to the ip whitelist with the ip or adds ip the player.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.IP.Add"));
 		if (p(sender, "prekick.ip.remove"))
-			cmds.add("/" + cmdLabel + " ip remove <Player> - Removes player from the ip whitelist.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.IP.Remove"));
 		if (p(sender, "prekick.ip.remove"))
-			cmds.add("/" + cmdLabel + " ip remove <Player> <IP> - Removes IP from the player from the ip whitelist.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.IP.RemoveIP"));
 
 		if (p(sender, "prekick.blacklist.switch"))
-			cmds.add("/" + cmdLabel + " blacklist on - Turns blacklist on.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "blacklist"));
 		if (p(sender, "prekick.blacklist.switch"))
-			cmds.add("/" + cmdLabel + " blacklist off - Turns blacklist off.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "blacklist"));
 		if (p(sender, "prekick.blacklist.add"))
-			cmds.add("/" + cmdLabel + " blacklist add <Group> <Player> - Adds player to the group in the blacklist.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Blacklist.Add"));
 		if (p(sender, "prekick.blacklist.remove"))
-			cmds.add("/" + cmdLabel + " blacklist remove <Group> <Player> - Removes player from the group in the blacklist.");
+			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Blacklist.Remove"));
 
 		int maxpage = 1 + cmds.size() / 6;
 		if (page < 1)
 			page = 1;
 		else if (page > maxpage)
 			page = maxpage;
-		sender.sendMessage("PreKick V" + prekick.version + " Page " + page + "/" + maxpage);
+		sender.sendMessage(prekick.language.GetText("PreKickCommand.Help.Page").replaceAll("%VERSION%", prekick.version).replaceAll("%PAGE%", page + "").replaceAll("%MAXPAGE%", maxpage + ""));
 		try {
 			for (int i = (page - 1) * 6; i < ((page - 1) * 6) + 6; i++) {
 				sender.sendMessage(cmds.get(i));

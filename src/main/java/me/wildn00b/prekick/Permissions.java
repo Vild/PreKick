@@ -15,7 +15,7 @@ public class Permissions {
 
 	public Permissions(PreKick prekick) {
 		if (prekick.getServer().getPluginManager().getPlugin("Vault") == null) {
-			PreKick.log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Vault not found, fall back on Bukkit Permissions.");
+			PreKick.log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Permissions.NotFound"));
 			isVaultEnabled = false;
 		} else {
 			RegisteredServiceProvider<Permission> rsp = prekick.getServer().getServicesManager().getRegistration(Permission.class);
