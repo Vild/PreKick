@@ -10,17 +10,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PreKick extends JavaPlugin {
 
 	public static final Logger log = Logger.getLogger("Minecraft");
-	public Permissions permissions;
 	public Config config;
+	public Language language;
+	public Permissions permissions;
 	public Whitelist whitelist;
 	public String version;
 
 	@Override
 	public void onEnable() {
 		version = getDescription().getVersion();
-		permissions = new Permissions(this);
 		config = new Config(new File(getDataFolder().getAbsolutePath() + File.separator + "config.yml"));
+		language = new Language(this);
+		permissions = new Permissions(this);
 		whitelist = new Whitelist(this);
+		
 
 		getServer().getPluginManager().registerEvents(new Listener(this), this);
 		getCommand("prekick").setExecutor(new PreKickCommand(this));

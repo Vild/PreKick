@@ -32,6 +32,7 @@ public class Config {
 		config.set("PreKick.Enabled", true);
 		config.set("PreKick.Easter-egg", true); // Broadcast when I (WildN00b) join the server
 		config.set("PreKick.ReloadWhenRead", false);
+		config.set("PreKick.Language", "en-US");
 
 		config.set("Whitelist.Enabled", true);
 		config.set("Whitelist.KickMessage", "Connection refuse: connect");
@@ -60,6 +61,8 @@ public class Config {
 			config.set("PreKick.Easter-egg", true);
 		if (!config.contains(getPath("PreKick.ReloadWhenRead")))
 			config.set("PreKick.ReloadWhenRead", false);
+		if (!config.contains(getPath("PreKick.Language")))
+			config.set("PreKick.Language", "en-US");
 		
 		if (!config.contains(getPath("Whitelist.Enable")))
 			config.set("Whitelist.Enabled", true);
@@ -118,7 +121,8 @@ public class Config {
 			try {
 				config.load(file);
 			} catch (Exception e) {
-				file.renameTo(new File(file.getPath() + ".bak"));
+				if (file.exists())
+					file.renameTo(new File(file.getPath() + ".bak"));
 				PreKick.log.log(Level.SEVERE, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Couldn't load config, moving broken config to '" + file.getAbsoluteFile() + ".bak' and making a new default config file.");
 				CreateDefaultConfig();
 			}
