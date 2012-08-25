@@ -13,7 +13,16 @@ commands:
     aliases: [pk]
     permission: prekick.show
     usage: Syntax error! Simply type /<command> to access the PreKick control panel.
-    
+  whitelist:
+    description: The whitelist in PreKick
+    aliases: [wl]
+    permission: prekick.show
+    usage: Syntax error! Simply type /<command> to access the whitelist in PreKick.
+  blacklist:
+    description: The blacklist in PreKick
+    aliases: [bl]
+    permission: prekick.show
+    usage: Syntax error! Simply type /<command> to access the blacklist in PreKick.
 permissions:
   prekick.*:
     description: All PreKick permissions

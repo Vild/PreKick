@@ -59,19 +59,19 @@ public class Language {
 		file.set("PreKickCommand.Toggle.AlreadyEnable", "%NAME% is already enabled.");
 		file.set("PreKickCommand.Toggle.Disable", "%NAME% is now &cdisabled.");
 		file.set("PreKickCommand.Toggle.AlreadyEnable", "%NAME% is already disabled.");
-		file.set("PreKickCommand.Help.Help", "help <Number> - Shows <Number> page of help.");
-		file.set("PreKickCommand.Help.Status", "status - Show some status about PreKick.");
-		file.set("PreKickCommand.Help.Switch.On", "on - Turns %CMD% on.");
-		file.set("PreKickCommand.Help.Switch.Off", "off - Turns %CMD% off.");
-		file.set("PreKickCommand.Help.Whitelist.Add", "whitelist add <Player> - Adds player to the whitelist.");
-		file.set("PreKickCommand.Help.Whitelist.Remove", "whitelist remove <Player> - Removes player from the whitelist.");
-		file.set("PreKickCommand.Help.IP.Add", "ip add <Player> <IP> - Adds player to the ip whitelist with the ip or adds ip the player.");
-		file.set("PreKickCommand.Help.IP.Remove", "ip remove <Player> - Removes player from the ip whitelist.");
-		file.set("PreKickCommand.Help.IP.RemoveIP", "ip remove <Player> <IP> - Removes IP from the player from the ip whitelist.");
-		file.set("PreKickCommand.Help.Blacklist.Add", "blacklist add <Group> <Player> - Adds player to the group in the blacklist.");
-		file.set("PreKickCommand.Help.Blacklist.Remove", "blacklist remove <Group> <Player> - Removes player from the group in the blacklist.");
+		file.set("PreKickCommand.Help.Help", "<Number> - Shows <Number> page of help.");
+		file.set("PreKickCommand.Help.Status", "Show some status about PreKick.");
+		file.set("PreKickCommand.Help.Switch.On", "Turns %CMD% on.");
+		file.set("PreKickCommand.Help.Switch.Off", "Turns %CMD% off.");
+		file.set("PreKickCommand.Help.Whitelist.Add", "<Player> - Adds player to the whitelist.");
+		file.set("PreKickCommand.Help.Whitelist.Remove", "<Player> - Removes player from the whitelist.");
+		file.set("PreKickCommand.Help.IP.Add", "<Player> <IP> - Adds player to the ip whitelist with the ip or adds ip the player.");
+		file.set("PreKickCommand.Help.IP.Remove", "<Player> - Removes player from the ip whitelist.");
+		file.set("PreKickCommand.Help.IP.RemoveIP", "<Player> <IP> - Removes IP from the player from the ip whitelist.");
+		file.set("PreKickCommand.Help.Blacklist.Add", "<Group> <Player> - Adds player to the group in the blacklist.");
+		file.set("PreKickCommand.Help.Blacklist.Remove", "<Group> <Player> - Removes player from the group in the blacklist.");
 		file.set("PreKickCommand.Help.Page", "PreKick V%VERSION% Page %PAGE%/%MAXPAGE%");
-
+		
 		file.set("Whitelist.KickMessage.CantFindGroup", "Can't find the blacklist group for %PLAYER%");
 		file.set("Whitelist.KickMessage.UnknownReason", "Unknown kick reason. reason: %REASON%");
 		file.set("Whitelist.KickMessage.Missbehaving", "PreKick missbehaving.");
@@ -88,6 +88,7 @@ public class Language {
 		file.set("Whitelist.Blacklist.Add", "Added %PLAYER% to the blacklist successfully.");
 		file.set("Whitelist.Blacklist.NotOnList", "%PLAYER% is not on the blacklist.");
 		file.set("Whitelist.Blacklist.Removed", "Removed %PLAYER% from the blacklist successfully.");
+		
 		try {
 			file.save(f);
 		} catch (IOException e) {

@@ -136,44 +136,44 @@ public class PreKickCommand implements CommandExecutor {
 	public void ShowHelp(CommandSender sender, String cmdLabel, int page) {
 		ArrayList<String> cmds = new ArrayList<String>();
 
-		cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Help").replaceAll("%CMDLABEL%", cmdLabel));
+		cmds.add("/" + cmdLabel + " help " + prekick.language.GetText("PreKickCommand.Help.Help").replaceAll("%CMDLABEL%", cmdLabel));
 
 		if (p(sender, "prekick.status"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Status"));
+			cmds.add("/" + cmdLabel + " status - " + prekick.language.GetText("PreKickCommand.Help.Status"));
 
 		if (p(sender, "prekick.switch"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "PreKicks"));
+			cmds.add("/" + cmdLabel + " on - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "PreKicks"));
 		if (p(sender, "prekick.switch"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.Off").replaceAll("%CMD%", "PreKicks"));
+			cmds.add("/" + cmdLabel + " off - " + prekick.language.GetText("PreKickCommand.Help.Switch.Off").replaceAll("%CMD%", "PreKicks"));
 
 		if (p(sender, "prekick.whitelist.switch"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "whitelist"));
+			cmds.add("/" + cmdLabel + " whitelist on - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "whitelist"));
 		if (p(sender, "prekick.whitelist.switch"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.Off").replaceAll("%CMD%", "whitelist"));
+			cmds.add("/" + cmdLabel + " whitelist off - " + prekick.language.GetText("PreKickCommand.Help.Switch.Off").replaceAll("%CMD%", "whitelist"));
 		if (p(sender, "prekick.whitelist.add"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Whitelist.Add"));
+			cmds.add("/" + cmdLabel + " whitelist add " + prekick.language.GetText("PreKickCommand.Help.Whitelist.Add"));
 		if (p(sender, "prekick.whitelist.remove"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Whitelist.Remove"));
+			cmds.add("/" + cmdLabel + " whitelist remove " + prekick.language.GetText("PreKickCommand.Help.Whitelist.Remove"));
 
 		if (p(sender, "prekick.ip.switch"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "IP whitelist"));
+			cmds.add("/" + cmdLabel + " ip on - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "IP whitelist"));
 		if (p(sender, "prekick.ip.switch"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "IP whitelist"));
+			cmds.add("/" + cmdLabel + " ip off - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "IP whitelist"));
 		if (p(sender, "prekick.ip.add"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.IP.Add"));
+			cmds.add("/" + cmdLabel + " ip add " + prekick.language.GetText("PreKickCommand.Help.IP.Add"));
 		if (p(sender, "prekick.ip.remove"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.IP.Remove"));
+			cmds.add("/" + cmdLabel + " ip remove " + prekick.language.GetText("PreKickCommand.Help.IP.Remove"));
 		if (p(sender, "prekick.ip.remove"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.IP.RemoveIP"));
+			cmds.add("/" + cmdLabel + " ip remove " + prekick.language.GetText("PreKickCommand.Help.IP.RemoveIP"));
 
 		if (p(sender, "prekick.blacklist.switch"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "blacklist"));
+			cmds.add("/" + cmdLabel + " blacklist on - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "blacklist"));
 		if (p(sender, "prekick.blacklist.switch"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "blacklist"));
+			cmds.add("/" + cmdLabel + " blacklist off - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "blacklist"));
 		if (p(sender, "prekick.blacklist.add"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Blacklist.Add"));
+			cmds.add("/" + cmdLabel + " blacklist add " + prekick.language.GetText("PreKickCommand.Help.Blacklist.Add"));
 		if (p(sender, "prekick.blacklist.remove"))
-			cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Blacklist.Remove"));
+			cmds.add("/" + cmdLabel + " blacklist remove " + prekick.language.GetText("PreKickCommand.Help.Blacklist.Remove"));
 
 		int maxpage = 1 + cmds.size() / 6;
 		if (page < 1)
