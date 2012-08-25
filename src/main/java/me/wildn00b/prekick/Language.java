@@ -34,14 +34,14 @@ public class Language {
 	}
 
 	private void createFile(File f) {
-		file.set("Listener.Message.Base", "'%PLAYER%' from IP '%IP%' was kicked");
+		file.set("Listener.Message.Base", "%PLAYER% from IP %IP% was kicked");
 		file.set("Listener.Message.WhiteList", "for not being on the whitelist.");
 		file.set("Listener.Message.IP", "for the IP not being on the IP whitelist.");
 		file.set("Listener.Message.BlackList", "for being on the blacklist.");
 		file.set("Listener.Message.Missbehaving", "for PreKick missbehaving!");
 		file.set("Listener.Message.Console.Missbehaving", "Unknown kick reason. reason: %REASON%");
 		file.set("Listener.EasterEgg", "&6WildN00b, the developer for PreKick is connecting. Say Hi!");
-		file.set("Listener.Console.EasterEgg", "You can disable this message, if you want ;(, just turn off 'Easter-egg' in the config");
+		file.set("Listener.Console.EasterEgg", "You can disable this message, if you want ;(, just turn off Easter-egg in the config");
 
 		file.set("Permissions.NotFound", "Vault not found, fall back on Bukkit Permissions.");
 

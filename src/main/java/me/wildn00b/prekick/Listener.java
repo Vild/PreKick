@@ -19,7 +19,7 @@ public class Listener implements org.bukkit.event.Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void OnLogin(PlayerLoginEvent event) {
-		if (!prekick.config.GetBoolean("PreKick.Enabled"))
+		if (!prekick.config.GetBoolean("PreKick.Enabled") || event.getResult() != PlayerLoginEvent.Result.ALLOWED)
 			return;
 
 		int reason = prekick.whitelist.IsPlayerOnWhitelist(event.getPlayer().getName(), event.getAddress().getHostAddress());
