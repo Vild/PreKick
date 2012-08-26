@@ -3,6 +3,7 @@ package me.wildn00b.prekick;
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -18,6 +19,7 @@ public class Language {
 			if (f.exists())
 				file.load(f);
 			else {
+				PreKick.log.log(Level.WARNING, "[PreKick] Couldn't find language file, reverting to en-US");
 				f = new File(prekick.getDataFolder().getAbsolutePath() + File.separator + "lang" + File.separator + "en-US.yml");
 				if (f.exists())
 					file.load(new File(prekick.getDataFolder().getAbsolutePath() + File.separator + "lang" + File.separator + "en-US.yml"));
