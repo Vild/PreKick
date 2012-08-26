@@ -28,7 +28,7 @@ public class Language {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void Close() {
@@ -73,7 +73,7 @@ public class Language {
 		file.set("PreKickCommand.Help.Blacklist.Add", "<Group> <Player> - Adds player to the group in the blacklist.");
 		file.set("PreKickCommand.Help.Blacklist.Remove", "<Group> <Player> - Removes player from the group in the blacklist.");
 		file.set("PreKickCommand.Help.Page", "PreKick V%VERSION% Page %PAGE%/%MAXPAGE%");
-		
+
 		file.set("Whitelist.KickMessage.CantFindGroup", "Can't find the blacklist group for %PLAYER%");
 		file.set("Whitelist.KickMessage.UnknownReason", "Unknown kick reason. reason: %REASON%");
 		file.set("Whitelist.KickMessage.Missbehaving", "PreKick missbehaving.");
@@ -90,7 +90,7 @@ public class Language {
 		file.set("Whitelist.Blacklist.Add", "Added %PLAYER% to the blacklist successfully.");
 		file.set("Whitelist.Blacklist.NotOnList", "%PLAYER% is not on the blacklist.");
 		file.set("Whitelist.Blacklist.Removed", "Removed %PLAYER% from the blacklist successfully.");
-		
+
 		file.save(f);
 	}
 
@@ -132,7 +132,7 @@ public class Language {
 		fix("PreKickCommand.Help.Blacklist.Add", "<Group> <Player> - Adds player to the group in the blacklist.");
 		fix("PreKickCommand.Help.Blacklist.Remove", "<Group> <Player> - Removes player from the group in the blacklist.");
 		fix("PreKickCommand.Help.Page", "PreKick V%VERSION% Page %PAGE%/%MAXPAGE%");
-		
+
 		fix("Whitelist.KickMessage.CantFindGroup", "Can't find the blacklist group for %PLAYER%");
 		fix("Whitelist.KickMessage.UnknownReason", "Unknown kick reason. reason: %REASON%");
 		fix("Whitelist.KickMessage.Missbehaving", "PreKick missbehaving.");
@@ -157,7 +157,7 @@ public class Language {
 		if (!file.contains(getPath(path)))
 			file.set(path, data);
 	}
-	
+
 	public String processColors(String text) {
 		return text.replaceAll("&", "\u00A7");
 	}

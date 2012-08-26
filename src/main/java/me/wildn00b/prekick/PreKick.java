@@ -28,7 +28,7 @@ public class PreKick extends JavaPlugin {
 		getCommand("prekick").setExecutor(new PreKickCommand(this));
 		getCommand("whitelist").setExecutor(new WhitelistCommand(this));
 		getCommand("blacklist").setExecutor(new BlacklistCommand(this));
-		log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + language.GetText("PreKick.Initialized"));
+		log.log(Level.INFO, "[PreKick] " + language.GetText("PreKick.Initialized"));
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class PreKick extends JavaPlugin {
 		config.Close();
 		config = null;
 		permissions = null;
-		log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + language.GetText("PreKick.Disabling"));
+		log.log(Level.INFO, "[PreKick] " + language.GetText("PreKick.Disabling"));
 	}
 
 }

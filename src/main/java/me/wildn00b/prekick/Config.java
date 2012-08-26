@@ -118,7 +118,7 @@ public class Config {
 			} catch (Exception e) {
 				if (file.exists())
 					file.renameTo(new File(file.getPath() + ".bak"));
-				PreKick.log.log(Level.SEVERE, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] Couldn't load config, moving broken config to '" + file.getAbsoluteFile() + ".bak' and making a new default config file.");
+				PreKick.log.log(Level.SEVERE, "[PreKick] Couldn't load config, moving broken config to '" + file.getAbsoluteFile() + ".bak' and making a new default config file.");
 				CreateDefaultConfig();
 			}
 		} else {

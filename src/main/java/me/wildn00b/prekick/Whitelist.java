@@ -68,10 +68,10 @@ public class Whitelist {
 						return prekick.config.GetString("Blacklist.Groups." + group + ".KickMessage");
 				}
 			}
-			PreKick.log.log(Level.WARNING, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.KickMessage.CantFindGroup").replaceAll("%PLAYER%", player));
+			PreKick.log.log(Level.WARNING, "[PreKick] " + prekick.language.GetText("Whitelist.KickMessage.CantFindGroup").replaceAll("%PLAYER%", player));
 			return prekick.language.GetText("Whitelist.KickMessage.Missbehaving");
 		} else {
-			PreKick.log.log(Level.WARNING, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.KickMessage.UnknownReason").replaceAll("%REASON%", reason + ""));
+			PreKick.log.log(Level.WARNING, "[PreKick] " + prekick.language.GetText("Whitelist.KickMessage.UnknownReason").replaceAll("%REASON%", reason + ""));
 			return prekick.language.GetText("Whitelist.KickMessage.Missbehaving");
 		}
 	}

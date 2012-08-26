@@ -35,7 +35,7 @@ public class Listener implements org.bukkit.event.Listener {
 			else if (reason == 3)
 				message += prekick.language.GetText("PreKick.Message.Blacklist").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
 			else {
-				PreKick.log.log(Level.WARNING, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("PreKick.Message.Missbehaving").replaceAll("%REASON%", reason + "").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress()));
+				PreKick.log.log(Level.WARNING, "[PreKick] " + prekick.language.GetText("PreKick.Message.Missbehaving").replaceAll("%REASON%", reason + "").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress()));
 				message += prekick.language.GetText("PreKick.Message.Missbehaving").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
 			}
 			for (Player player : prekick.getServer().getOnlinePlayers()) {
@@ -43,7 +43,7 @@ public class Listener implements org.bukkit.event.Listener {
 					player.sendMessage(message);
 			}
 
-			PreKick.log.log(Level.INFO, message);
+			PreKick.log.log(Level.INFO, "[PreKick] " + message);
 		}
 	}
 
@@ -51,7 +51,7 @@ public class Listener implements org.bukkit.event.Listener {
 	public void EasterEgg(PlayerLoginEvent event) {
 		if (prekick.config.GetBoolean("PreKick.Easter-egg") && event.getResult() == Result.ALLOWED && event.getPlayer().getName().equals("WildN00b")) {
 			prekick.getServer().broadcastMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Listener.EasterEgg"));
-			PreKick.log.log(Level.INFO, "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Listener.Console.EasterEgg"));
+			PreKick.log.log(Level.INFO, "[PreKick] " + prekick.language.GetText("Listener.Console.EasterEgg"));
 		}
 	}
 }
