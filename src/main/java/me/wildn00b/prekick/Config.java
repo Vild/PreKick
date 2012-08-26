@@ -14,6 +14,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class Config {
 
 	private YamlConfiguration config;
+
 	public YamlConfiguration getConfig() {
 		return config;
 	}
@@ -52,39 +53,29 @@ public class Config {
 		config.set("Blacklist.Groups.Hax.Players", Arrays.asList(new String[] { "Hacker1337", "Hax" }));
 		Save();
 	}
-	
-	private void UpgradeConfig() {
 
-		if (!config.contains(getPath("PreKick.Enable")))
-			config.set("PreKick.Enabled", true);
-		if (!config.contains(getPath("PreKick.Easter-egg")))
-			config.set("PreKick.Easter-egg", true);
-		if (!config.contains(getPath("PreKick.ReloadWhenRead")))
-			config.set("PreKick.ReloadWhenRead", false);
-		if (!config.contains(getPath("PreKick.Language")))
-			config.set("PreKick.Language", "en-US");
-		
-		if (!config.contains(getPath("Whitelist.Enable")))
-			config.set("Whitelist.Enabled", true);
-		if (!config.contains(getPath("Whitelist.KickMessage")))
-			config.set("Whitelist.KickMessage", "Connection refuse: connect");
-		if (!config.contains(getPath("Whitelist.Players")))
-			config.set("Whitelist.Players", Arrays.asList(new String[] { "WildN00b", "ThePf" }));
-		
-		if (!config.contains(getPath("IP.Enable")))
-			config.set("IP.Enabled", false);
-		if (!config.contains(getPath("IP.KickMessage")))
-			config.set("IP.KickMessage", "&eIP doesn't match");
+	private void UpgradeConfig() {
+		fix("PreKick.Enabled", true);
+		fix("PreKick.Easter-egg", true);
+		fix("PreKick.ReloadWhenRead", false);
+		fix("PreKick.Language", "en-US");
+
+		fix("Whitelist.Enabled", true);
+		fix("Whitelist.KickMessage", "Connection refuse: connect");
+		fix("Whitelist.Players", Arrays.asList(new String[] { "WildN00b", "ThePf" }));
+
+		fix("IP.Enabled", false);
+		fix("IP.KickMessage", "&eIP doesn't match");
 		if (!config.contains(getPath("IP.Players"))) {
 			config.set("IP.Players.WildN00b", Arrays.asList(new String[] { "127.0.0.1", "10.10.10.10" }));
 			config.set("IP.Players.ThePf", Arrays.asList(new String[] { "1.1.1.1" }));
 		}
-		
+
 		if (!config.contains(getPath("Blacklist.Groups"))) {
 			Object blacklist = config.get(getPath("Blacklist"));
 			config.set(getPath("Blacklist"), null);
 			config.set(getPath("Blacklist.Groups"), blacklist);
-			
+
 			if (config.getConfigurationSection(getPath("Blacklist.Groups")).getKeys(false).size() <= 1) {
 				config.set("Blacklist.Groups.group1.KickMessage", "&2&lYou are banned for being in the group!");
 				config.set("Blacklist.Groups.group1.Players", Arrays.asList(new String[] { "ImAGroup" }));
@@ -92,15 +83,19 @@ public class Config {
 				config.set("Blacklist.Groups.Hax.Players", Arrays.asList(new String[] { "Hacker1337", "Hax" }));
 			}
 		}
-		
-		if (!config.contains(getPath("Blacklist.Enable")))
-			config.set("Blacklist.Enabled", true);
+
+		fix("Blacklist.Enabled", true);
 		if (!config.contains(getPath("Blacklist.Players"))) {
 			config.set("Blacklist.Players.Cheater1", "&a&lYou're not allowed on this server!");
 			config.set("Blacklist.Players.Cheater2", "&a&nSorry, but you're not allowed to play on this server!");
 		}
-		
+
 		Save();
+	}
+
+	private void fix(String path, Object data) {
+		if (!config.contains(getPath(path)))
+			config.set(path, data);
 	}
 
 	public void Close() {
@@ -160,27 +155,27 @@ public class Config {
 		config.set(getPath(path), value);
 		Save();
 	}
-	
+
 	public String getPath(String path) {
 		String split[] = path.split("\\.");
 		if (split.length <= 0)
 			return path;
-		
+
 		String newPath = "";
 		boolean set = true;
-		
+
 		ConfigurationSection section = config.getRoot();
-		
+
 		for (int i = 0; i < split.length; i++) {
 			if (!set) {
 				newPath += "." + split[i];
 				continue;
 			}
-			
+
 			set = false;
 			try {
 				Set<String> entries = section.getKeys(false);
-			
+
 				for (String x : entries) {
 					if (x.equalsIgnoreCase(split[i])) {
 						newPath += "." + x;
@@ -195,10 +190,10 @@ public class Config {
 				newPath += "." + split[i];
 			}
 		}
-		
+
 		return newPath.substring(1);
 	}
-	
+
 	public Object Get(String path, Object def) {
 		return config.get(getPath(path));
 	}
