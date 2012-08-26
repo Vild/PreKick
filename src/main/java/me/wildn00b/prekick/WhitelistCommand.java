@@ -1,7 +1,6 @@
 package me.wildn00b.prekick;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

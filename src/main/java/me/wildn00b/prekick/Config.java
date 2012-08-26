@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.Set;
 
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
