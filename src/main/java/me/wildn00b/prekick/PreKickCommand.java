@@ -92,6 +92,8 @@ public class PreKickCommand implements CommandExecutor {
 					ShowHelp(sender, commandLabel, 1);
 			} else
 				ShowHelp(sender, commandLabel, 1);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			ShowHelp(sender, commandLabel, 1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

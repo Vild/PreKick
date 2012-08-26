@@ -1,6 +1,7 @@
 package me.wildn00b.prekick;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -24,9 +25,7 @@ public class WhitelistCommand implements CommandExecutor {
 
 		try {
 			if (args.length == 1) {
-				if (args[0].equalsIgnoreCase("help"))
-					ShowHelp(sender, commandLabel, Integer.parseInt(args[1]));
-				else if (args[0].equalsIgnoreCase("on"))
+				if (args[0].equalsIgnoreCase("on"))
 					ToggleConfig(sender, "Whitelist.Enabled", true, "Whitelist");
 				else if (args[0].equalsIgnoreCase("off") && p(sender, "prekick.whitelist.switch"))
 					ToggleConfig(sender, "Whitelist.Enabled", false, "Whitelist");
@@ -40,7 +39,9 @@ public class WhitelistCommand implements CommandExecutor {
 				} else
 					ShowHelp(sender, commandLabel, 1);
 			} else if (args.length == 2) {
-				if (args[0].equalsIgnoreCase("add") && p(sender, "prekick.whitelist.add"))
+				if (args[0].equalsIgnoreCase("help"))
+					ShowHelp(sender, commandLabel, Integer.parseInt(args[1]));
+				else if (args[0].equalsIgnoreCase("add") && p(sender, "prekick.whitelist.add"))
 					sender.sendMessage(prekick.whitelist.AddPlayerToWhitelist(args[1]));
 				else if (args[0].equalsIgnoreCase("remove") && p(sender, "prekick.whitelist.remove"))
 					sender.sendMessage(prekick.whitelist.RemovePlayerFromWhitelist(args[1]));
@@ -63,6 +64,8 @@ public class WhitelistCommand implements CommandExecutor {
 					ShowHelp(sender, commandLabel, 1);
 			} else
 				ShowHelp(sender, commandLabel, 1);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			ShowHelp(sender, commandLabel, 1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -98,8 +101,8 @@ public class WhitelistCommand implements CommandExecutor {
 
 	public void ShowHelp(CommandSender sender, String cmdLabel, int page) {
 		ArrayList<String> cmds = new ArrayList<String>();
-
-		cmds.add("/" + cmdLabel + " " + prekick.language.GetText("PreKickCommand.Help.Help").replaceAll("%CMDLABEL%", cmdLabel));
+		
+		cmds.add("/" + cmdLabel + " help " + prekick.language.GetText("PreKickCommand.Help.Help").replaceAll("%CMDLABEL%", cmdLabel));
 
 		if (p(sender, "prekick.whitelist.switch"))
 			cmds.add("/" + cmdLabel + " on - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "whitelist"));

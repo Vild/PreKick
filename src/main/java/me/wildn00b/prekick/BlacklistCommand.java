@@ -24,13 +24,16 @@ public class BlacklistCommand implements CommandExecutor {
 
 		try {
 			if (args.length == 1) {
-				if (args[0].equalsIgnoreCase("help"))
-					ShowHelp(sender, commandLabel, Integer.parseInt(args[1]));
-				else if (args[0].equalsIgnoreCase("on") && p(sender, "prekick.blacklist.switch"))
+				if (args[0].equalsIgnoreCase("on") && p(sender, "prekick.blacklist.switch"))
 					ToggleConfig(sender, "Blacklist.Enabled", true, "Blacklist");
 				else if (args[0].equalsIgnoreCase("off") && p(sender, "prekick.blacklist.switch"))
 					ToggleConfig(sender, "Blacklist.Enabled", false, "Blacklist");
 				else
+					ShowHelp(sender, commandLabel, 1);
+			} else if (args.length == 2) {
+				if (args[0].equalsIgnoreCase("help"))
+					ShowHelp(sender, commandLabel, Integer.parseInt(args[1]));
+				else 
 					ShowHelp(sender, commandLabel, 1);
 			} else if (args.length == 3) {
 				if (args[0].equalsIgnoreCase("add") && p(sender, "prekick.blacklist.add"))
@@ -41,6 +44,8 @@ public class BlacklistCommand implements CommandExecutor {
 					ShowHelp(sender, commandLabel, 1);
 			} else
 				ShowHelp(sender, commandLabel, 1);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			ShowHelp(sender, commandLabel, 1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
