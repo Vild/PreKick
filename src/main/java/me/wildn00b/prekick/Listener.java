@@ -27,20 +27,20 @@ public class Listener implements org.bukkit.event.Listener {
 		if (reason != 1) {
 			event.disallow(Result.KICK_WHITELIST, prekick.whitelist.processColors(prekick.whitelist.GetKickMessage(event.getPlayer().getName(), reason)));
 
-			String message = "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("PreKick.Message.Base").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress()) + " ";
+			String message = prekick.language.GetText("Listener.Message.Base").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress()) + " ";
 			if (reason == 0)
-				message += prekick.language.GetText("PreKick.Message.Whitelist").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
+				message += prekick.language.GetText("Listener.Message.Whitelist").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
 			else if (reason == 2)
-				message += prekick.language.GetText("PreKick.Message.IP").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
+				message += prekick.language.GetText("Listener.Message.IP").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
 			else if (reason == 3)
-				message += prekick.language.GetText("PreKick.Message.Blacklist").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
+				message += prekick.language.GetText("Listener.Message.Blacklist").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
 			else {
 				PreKick.log.log(Level.WARNING, "[PreKick] " + prekick.language.GetText("PreKick.Message.Missbehaving").replaceAll("%REASON%", reason + "").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress()));
-				message += prekick.language.GetText("PreKick.Message.Missbehaving").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
+				message += prekick.language.GetText("Listener.Message.Missbehaving").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress());
 			}
 			for (Player player : prekick.getServer().getOnlinePlayers()) {
 				if (prekick.permissions.HasPermissions(player, "prekick.seekick"))
-					player.sendMessage(message);
+					player.sendMessage("[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + message);
 			}
 
 			PreKick.log.log(Level.INFO, "[PreKick] " + message);
