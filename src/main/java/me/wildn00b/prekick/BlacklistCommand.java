@@ -89,9 +89,9 @@ public class BlacklistCommand implements CommandExecutor {
 		if (p(sender, "prekick.blacklist.switch"))
 			cmds.add("/" + cmdLabel + " off - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "blacklist"));
 		if (p(sender, "prekick.blacklist.add"))
-			cmds.add("/" + cmdLabel + " add " + prekick.language.GetText("PreKickCommand.Help.Blacklist.Add"));
+			cmds.add("/" + cmdLabel + " add " + prekick.language.GetText("BlacklistCommand.Help.Blacklist.Add"));
 		if (p(sender, "prekick.blacklist.remove"))
-			cmds.add("/" + cmdLabel + " remove " + prekick.language.GetText("PreKickCommand.Help.Blacklist.Remove"));
+			cmds.add("/" + cmdLabel + " remove " + prekick.language.GetText("BlacklistCommand.Help.Blacklist.Remove"));
 
 		int maxpage = 1 + cmds.size() / 6;
 		if (page < 1)

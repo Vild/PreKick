@@ -108,20 +108,20 @@ public class WhitelistCommand implements CommandExecutor {
 		if (p(sender, "prekick.whitelist.switch"))
 			cmds.add("/" + cmdLabel + " off - " + prekick.language.GetText("PreKickCommand.Help.Switch.Off").replaceAll("%CMD%", "whitelist"));
 		if (p(sender, "prekick.whitelist.add"))
-			cmds.add("/" + cmdLabel + " add " + prekick.language.GetText("PreKickCommand.Help.Whitelist.Add"));
+			cmds.add("/" + cmdLabel + " add " + prekick.language.GetText("WhitelistCommand.Help.Add"));
 		if (p(sender, "prekick.whitelist.remove"))
-			cmds.add("/" + cmdLabel + " remove " + prekick.language.GetText("PreKickCommand.Help.Whitelist.Remove"));
+			cmds.add("/" + cmdLabel + " remove " + prekick.language.GetText("WhitelistCommand.Help.Remove"));
 
 		if (p(sender, "prekick.ip.switch"))
 			cmds.add("/" + cmdLabel + " ip on - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "IP whitelist"));
 		if (p(sender, "prekick.ip.switch"))
 			cmds.add("/" + cmdLabel + " ip off - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "IP whitelist"));
 		if (p(sender, "prekick.ip.add"))
-			cmds.add("/" + cmdLabel + " ip add " + prekick.language.GetText("PreKickCommand.Help.IP.Add"));
+			cmds.add("/" + cmdLabel + " ip add " + prekick.language.GetText("WhitelistCommand.Help.IP.Add"));
 		if (p(sender, "prekick.ip.remove"))
-			cmds.add("/" + cmdLabel + " ip remove " + prekick.language.GetText("PreKickCommand.Help.IP.Remove"));
+			cmds.add("/" + cmdLabel + " ip remove " + prekick.language.GetText("WhitelistCommand.Help.IP.Remove"));
 		if (p(sender, "prekick.ip.remove"))
-			cmds.add("/" + cmdLabel + " ip remove " + prekick.language.GetText("PreKickCommand.Help.IP.RemoveIP"));
+			cmds.add("/" + cmdLabel + " ip remove " + prekick.language.GetText("WhitelistCommand.Help.IP.RemoveIP"));
 
 		int maxpage = 1 + cmds.size() / 6;
 		if (page < 1)
