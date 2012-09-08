@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.logging.Level;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -160,12 +161,12 @@ public class Language {
 			file.set(path, data);
 	}
 
-	public String processColors(String text) {
-		return text.replaceAll("&", "\u00A7");
+	public String processText(String text) {
+		return ChatColor.translateAlternateColorCodes('&', text).replace("\\n", "\n");
 	}
 
 	public String GetText(String path) {
-		return processColors(file.getString(getPath(path), path));
+		return processText(file.getString(getPath(path), path));
 	}
 
 	public String getPath(String path) {

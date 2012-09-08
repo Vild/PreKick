@@ -25,7 +25,7 @@ public class Listener implements org.bukkit.event.Listener {
 		int reason = prekick.whitelist.IsPlayerOnWhitelist(event.getPlayer().getName(), event.getAddress().getHostAddress());
 
 		if (reason != 1) {
-			event.disallow(Result.KICK_WHITELIST, prekick.whitelist.processColors(prekick.whitelist.GetKickMessage(event.getPlayer().getName(), reason)));
+			event.disallow(Result.KICK_WHITELIST, prekick.whitelist.processText(prekick.whitelist.GetKickMessage(event.getPlayer().getName(), reason)));
 
 			String message = prekick.language.GetText("Listener.Message.Base").replaceAll("%PLAYER%", event.getPlayer().getName()).replaceAll("%IP%", event.getAddress().getHostAddress()) + " ";
 			if (reason == 0)

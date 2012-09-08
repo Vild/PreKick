@@ -16,8 +16,8 @@ public class Whitelist {
 		this.prekick = prekick;
 	}
 
-	public String processColors(String text) {
-		return text.replaceAll("&", "\u00A7");
+	public String processText(String text) {
+		return ChatColor.translateAlternateColorCodes('&', text).replace("\\n", "\n");
 	}
 
 	private boolean containsIgnoreCase(List<String> list, String text) {
