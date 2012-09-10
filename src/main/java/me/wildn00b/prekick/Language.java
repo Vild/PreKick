@@ -78,7 +78,10 @@ public class Language {
 
 		file.set("BlacklistCommand.Help.Add", "<Group> <Player> - Adds player to the group in the blacklist.");
 		file.set("BlacklistCommand.Help.Remove", "<Group> <Player> - Removes player from the group in the blacklist.");
-
+		file.set("BlacklistCommand.Help.Group.Add", "<Group> <Message> - Makes a new group for the blacklist");
+		file.set("BlacklistCommand.Help.Group.Remove", "<Group> - Removes the group from the blacklist.");
+		file.set("BlacklistCommand.Help.Group.Set", "<Message> - Sets a kick message for the group on the blacklist.");
+		
 		file.set("Whitelist.KickMessage.CantFindGroup", "Can't find the blacklist group for %PLAYER%");
 		file.set("Whitelist.KickMessage.UnknownReason", "Unknown kick reason. reason: %REASON%");
 		file.set("Whitelist.KickMessage.Missbehaving", "PreKick missbehaving.");
@@ -95,6 +98,11 @@ public class Language {
 		file.set("Whitelist.Blacklist.Add", "Added %PLAYER% to the blacklist successfully.");
 		file.set("Whitelist.Blacklist.NotOnList", "%PLAYER% is not on the blacklist.");
 		file.set("Whitelist.Blacklist.Removed", "Removed %PLAYER% from the blacklist successfully.");
+		file.set("Whitelist.Blacklist.Group.Added", "Added the blacklist group %GROUP% successfully.");
+		file.set("Whitelist.Blacklist.Group.Removed", "Removed the blacklist group %GROUP% successfully.");
+		file.set("Whitelist.Blacklist.Group.AlreadyAdded", "There are already a group named %GROUP% on the blacklist.");
+		file.set("Whitelist.Blacklist.Group.NotOnList", "There no group named %GROUP% on the blacklist.");
+		file.set("Whitelist.Blacklist.Group.Setted", "Setted message to the blacklist group %GROUP% successfully.");
 
 		file.save(f);
 	}
@@ -161,6 +169,9 @@ public class Language {
 		}
 		fix("BlacklistCommand.Help.Add", "<Group> <Player> - Adds player to the group in the blacklist.");
 		fix("BlacklistCommand.Help.Remove", "<Group> <Player> - Removes player from the group in the blacklist.");
+		fix("BlacklistCommand.Help.Group.Add", "<Group> <Message> - Makes a new group for the blacklist");
+		fix("BlacklistCommand.Help.Group.Remove", "<Group> - Removes the group from the blacklist.");
+		fix("BlacklistCommand.Help.Group.Set", "<Message> - Sets a kick message for the group on the blacklist.");
 
 		fix("PreKickCommand.Help.Whitelist", "Shows help for the whitelist.");
 		fix("PreKickCommand.Help.Blacklist", "Shows help for the blacklist.");
@@ -181,6 +192,11 @@ public class Language {
 		fix("Whitelist.Blacklist.Add", "Added %PLAYER% to the blacklist successfully.");
 		fix("Whitelist.Blacklist.NotOnList", "%PLAYER% is not on the blacklist.");
 		fix("Whitelist.Blacklist.Removed", "Removed %PLAYER% from the blacklist successfully.");
+		fix("Whitelist.Blacklist.Group.Added", "Added the blacklist group %GROUP% successfully.");
+		fix("Whitelist.Blacklist.Group.Removed", "Removed the blacklist group %GROUP% successfully.");
+		fix("Whitelist.Blacklist.Group.AlreadyAdded", "There are already a group named %GROUP% on the blacklist.");
+		fix("Whitelist.Blacklist.Group.NotOnList", "There no group named %GROUP% on the blacklist.");
+		fix("Whitelist.Blacklist.Group.Setted", "Setted message to the blacklist group %GROUP% successfully.");
 
 		file.save(path);
 	}

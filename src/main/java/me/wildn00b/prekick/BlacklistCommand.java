@@ -1,7 +1,9 @@
 package me.wildn00b.prekick;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -33,14 +35,30 @@ public class BlacklistCommand implements CommandExecutor {
 			} else if (args.length == 2) {
 				if (args[0].equalsIgnoreCase("help"))
 					ShowHelp(sender, commandLabel, Integer.parseInt(args[1]));
-				else 
+				else
 					ShowHelp(sender, commandLabel, 1);
 			} else if (args.length == 3) {
 				if (args[0].equalsIgnoreCase("add") && p(sender, "prekick.blacklist.add"))
 					sender.sendMessage(prekick.whitelist.AddPlayerToBlacklist(args[1], args[2]));
 				else if (args[0].equalsIgnoreCase("remove") && p(sender, "prekick.blacklist.add"))
 					sender.sendMessage(prekick.whitelist.RemovePlayerFromBlacklist(args[1], args[2]));
-				else
+				else if (args[0].equalsIgnoreCase("group")) {
+					if (args[1].equalsIgnoreCase("remove") && p(sender, "prekick.blacklist.group.remove"))
+						sender.sendMessage(prekick.whitelist.RemoveGroupFromBlacklist(args[2]));
+					else
+						ShowHelp(sender, commandLabel, 1);
+				} else
+					ShowHelp(sender, commandLabel, 1);
+			} else if (args.length >= 4) {
+				if (args[0].equalsIgnoreCase("group")) {
+					if (args[1].equalsIgnoreCase("add") && p(sender, "prekick.blacklist.group.add")) {
+						String arr[] = Arrays.copyOfRange(args, 2, args.length - 1);
+						sender.sendMessage(prekick.whitelist.AddGroupToBlacklist(args[2], StringUtils.join(arr, " ")));
+					}else if (args[1].equalsIgnoreCase("set") && p(sender, "prekick.blacklist.group.set")) {
+						String arr[] = Arrays.copyOfRange(args, 2, args.length - 1);
+						sender.sendMessage(prekick.whitelist.SetMessageForGroupOnBlacklist(args[2], StringUtils.join(arr, " ")));
+					}
+				} else
 					ShowHelp(sender, commandLabel, 1);
 			} else
 				ShowHelp(sender, commandLabel, 1);
@@ -89,10 +107,16 @@ public class BlacklistCommand implements CommandExecutor {
 		if (p(sender, "prekick.blacklist.switch"))
 			cmds.add("/" + cmdLabel + " off - " + prekick.language.GetText("PreKickCommand.Help.Switch.On").replaceAll("%CMD%", "blacklist"));
 		if (p(sender, "prekick.blacklist.add"))
-			cmds.add("/" + cmdLabel + " add " + prekick.language.GetText("BlacklistCommand.Help.Blacklist.Add"));
+			cmds.add("/" + cmdLabel + " add " + prekick.language.GetText("BlacklistCommand.Help.Add"));
 		if (p(sender, "prekick.blacklist.remove"))
-			cmds.add("/" + cmdLabel + " remove " + prekick.language.GetText("BlacklistCommand.Help.Blacklist.Remove"));
-
+			cmds.add("/" + cmdLabel + " remove " + prekick.language.GetText("BlacklistCommand.Help.Remove"));
+		if (p(sender, "prekick.blacklist.group.add"))
+			cmds.add("/" + cmdLabel + " group add " + prekick.language.GetText("BlacklistCommand.Help.Grope.Add"));
+		if (p(sender, "prekick.blacklist.group.remove"))
+			cmds.add("/" + cmdLabel + " group remove " + prekick.language.GetText("BlacklistCommand.Help.Grope.Remove"));
+		if (p(sender, "prekick.blacklist.group.set"))
+			cmds.add("/" + cmdLabel + " group set " + prekick.language.GetText("BlacklistCommand.Help.Grope.Set"));
+		
 		int maxpage = 1 + cmds.size() / 6;
 		if (page < 1)
 			page = 1;

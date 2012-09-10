@@ -1,5 +1,6 @@
 package me.wildn00b.prekick;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -183,7 +184,7 @@ public class Whitelist {
 	}
 
 	public String RemovePlayerFromBlacklist(String player, String group) {
-		if (!containsIgnoreCase(prekick.config.GetStringList("Blacklist.Groups.Players"), player))
+		if (!containsIgnoreCase(prekick.config.GetStringList("Blacklist.Groups." + group +  ".Players"), player))
 			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.Blacklist.NotOnList").replaceAll("%PLAYER%", player);
 
 		List<String> list = prekick.config.GetStringList("Blacklist.Groups." + group + ".Players");
@@ -194,4 +195,34 @@ public class Whitelist {
 		return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.Blacklist.Removed").replaceAll("%PLAYER%", player);
 	}
 
+	public String AddGroupToBlacklist(String group, String Message) {
+		if (containsIgnoreCase(prekick.config.GetStringList("Blacklist.Groups"), group))
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.Blacklist.Group.AlreadyAdded").replaceAll("%GROUP%", group);
+
+		prekick.config.Set("Blacklist.Groups." + group + ".KickMessage", Message);
+		prekick.config.Set("Blacklist.Groups." + group + ".Players", new ArrayList<String>());
+		prekick.config.Save();
+
+		return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.Blacklist.Group.Added").replaceAll("%GROUP%", group);
+	}
+
+	public String RemoveGroupFromBlacklist(String group) {
+		if (!containsIgnoreCase(prekick.config.GetStringList("Blacklist.Groups"), group))
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.Blacklist.Group.NotOnList").replaceAll("%GROUP%", group);
+
+		prekick.config.Set("Blacklist.Groups." + group, null);
+		prekick.config.Save();
+
+		return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.Blacklist.Group.Removed").replaceAll("%GROUP%", group);
+	}
+
+	public String SetMessageForGroupOnBlacklist(String group, String Message) {
+		if (!containsIgnoreCase(prekick.config.GetStringList("Blacklist.Groups"), group))
+			return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.Blacklist.Group.NotOnList").replaceAll("%GROUP%", group);
+		
+		prekick.config.Set("Blacklist.Groups." + group + ".KickMessage", Message);
+		prekick.config.Save();
+
+		return "[" + ChatColor.RED + "PreKick" + ChatColor.RESET + "] " + prekick.language.GetText("Whitelist.Blacklist.Group.Setted").replaceAll("%GROUP%", group);
+	}
 }
