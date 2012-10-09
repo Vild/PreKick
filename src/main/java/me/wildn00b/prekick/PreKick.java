@@ -4,6 +4,10 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import me.wildn00b.prekick.commands.BlacklistCommand;
+import me.wildn00b.prekick.commands.PreKickCommand;
+import me.wildn00b.prekick.commands.WhitelistCommand;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PreKick extends JavaPlugin {

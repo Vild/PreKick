@@ -1,7 +1,9 @@
-package me.wildn00b.prekick;
+package me.wildn00b.prekick.commands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import me.wildn00b.prekick.PreKick;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;

@@ -1,6 +1,8 @@
-package me.wildn00b.prekick;
+package me.wildn00b.prekick.commands;
 
 import java.util.ArrayList;
+
+import me.wildn00b.prekick.PreKick;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
